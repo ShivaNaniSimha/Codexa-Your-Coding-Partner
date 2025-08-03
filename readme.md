@@ -1,4 +1,5 @@
-###Production Ready Application
+##Production Ready Application
+
 #CodeXA - Your Ultimate Coding Platform
 **CodeXA** is a feature-rich, AI-powered platform designed to help you master data structures and algorithms, prepare for technical interviews, and compete with fellow programmers. With a seamless user experience and a powerful set of tools, CodeXA is your one-stop solution for all things coding.
 
@@ -51,6 +52,7 @@
 - npm i or npm install
 - npm -v
 - nodejs -v
+
 ##cd backend
 - sudo npm install -g pm2
 - pm2 start src/index.js
