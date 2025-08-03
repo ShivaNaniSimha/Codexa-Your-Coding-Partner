@@ -1,4 +1,5 @@
-# CodeXA - Your Ultimate Coding Platform
+###Production Ready Application
+#CodeXA - Your Ultimate Coding Platform
 **CodeXA** is a feature-rich, AI-powered platform designed to help you master data structures and algorithms, prepare for technical interviews, and compete with fellow programmers. With a seamless user experience and a powerful set of tools, CodeXA is your one-stop solution for all things coding.
 
 ## ✨ Key Features
@@ -45,17 +46,17 @@
 ## Production working instructions on AWS  
 - ** Setup environment variables in backend and frontend as well.
 - ** Instead of using the same domain name in socket.js and axiosClient.js user your server internal ip or another domain that you have registered.
-- **sudo apt install -y nodejs
-- **Install nginx -- sudo apt update && sudo apt install nginx -y
-- ** npm i or npm install
+- sudo apt install -y nodejs
+- Install nginx -- sudo apt update && sudo apt install nginx -y
+- npm i or npm install
 - npm -v
 - nodejs -v
-- ** cd backend
+##cd backend
 - sudo npm install -g pm2
 - pm2 start src/index.js
 - pm2 list
 
-- ** cd frontend
+## cd frontend
 - npm i or npm install
 - npm run build
 - serve the build artifacts from the dist folder
