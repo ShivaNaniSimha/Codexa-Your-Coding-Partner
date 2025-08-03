@@ -42,46 +42,24 @@
 - **Email Service:** Nodemailer
 - **API Validation:** Validator.js
 
-## 🛠️ Getting Started
+## Production working instructions on AWS  
+- ** Setup environment variables in backend and frontend as well.
+- ** Instead of using the same domain name in socket.js and axiosClient.js user your server internal ip or another domain that you have registered.
 
-### Prerequisites
-
-- Node.js (v18 or higher)
-- npm or yarn
-- MongoDB instance (local or cloud)
-- Git
-
-### Installation & Setup
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/gopaljha16/codexa.git
-   cd codexa
-   ```
-
-2. **Setup Backend:**
-   ```bash
-   cd backend
-   npm install
-   ```
-   - Create a `.env` file in the `backend` directory and add the necessary environment variables (see `.env.example` for reference).
-   - Start the backend server:
-     ```bash
-     npm start
-     ```
-
-3. **Setup Frontend:**
-   ```bash
-   cd ../frontend
-   npm install
-   ```
-   - Create `.env.development` and `.env.production` files in the `frontend` directory and add the necessary environment variables.
-   - Start the frontend development server:
-     ```bash
-     npm run dev
-     ```
-
-4. **Open your browser** and navigate to `http://localhost:5173` (or the port specified by Vite).
+- sudo apt install -y nodejs
+- npm -v
+- nodejs -v
+- 
+- ** cd backend
+- ** npm i or npm install
+- 
+- ** cd frontend
+- -** npm i or npm install
+- ** npm run build
+- ** you will see a dist folder which contain build artifacts so serve it
+- 
+- ** Install nginx -- sudo apt update && sudo apt install nginx -y
+- ** 
 
 ## 🤝 Contributing
 
