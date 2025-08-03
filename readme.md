@@ -45,21 +45,29 @@
 ## Production working instructions on AWS  
 - ** Setup environment variables in backend and frontend as well.
 - ** Instead of using the same domain name in socket.js and axiosClient.js user your server internal ip or another domain that you have registered.
-
-- sudo apt install -y nodejs
+- **sudo apt install -y nodejs
+- **Install nginx -- sudo apt update && sudo apt install nginx -y
+- ** npm i or npm install
 - npm -v
 - nodejs -v
-- 
 - ** cd backend
-- ** npm i or npm install
-- 
+- sudo npm install -g pm2
+- pm2 start src/index.js
+- pm2 list
+
 - ** cd frontend
-- -** npm i or npm install
-- ** npm run build
-- ** you will see a dist folder which contain build artifacts so serve it
-- 
-- ** Install nginx -- sudo apt update && sudo apt install nginx -y
-- ** 
+- npm i or npm install
+- npm run build
+- serve the build artifacts from the dist folder
+- create nginx config file
+- sudo systemctl status nginx
+- sudo systemctl start nginx
+
+## Security Groups
+- Allow port 80 for http
+- Allow port 443 for http
+- Allow port 5173 for http
+  
 
 ## 🤝 Contributing
 
