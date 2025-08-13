@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: shivasimha/letskonnect-client:5
+          image: shivasimha/codexa-frontend:latest
           ports:
             - containerPort: 80
+
 
