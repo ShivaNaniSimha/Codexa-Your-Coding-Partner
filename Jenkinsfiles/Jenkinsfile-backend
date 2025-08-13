@@ -65,7 +65,7 @@ pipeline {
 
         stage('Update Kubernetes Manifest in Git') {
             steps {
-                dir('kubernetes-manifests/server') {
+                dir('kubernetes-manifests/backend') {
                    withCredentials([string(credentialsId: "github-token", variable: 'TOKEN')]) {
                         sh '''
                         git config user.name "${GIT_USER}"
@@ -87,3 +87,4 @@ pipeline {
         }
     }
 }
+
