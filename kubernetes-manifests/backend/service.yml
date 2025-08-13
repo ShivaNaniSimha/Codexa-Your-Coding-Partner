@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: codexa-backend-service
+  namespace: two-tier
+  labels:
+    app: codexa-backend
+spec:
+  selector:
+    app: codexa-backend
+  ports:
+    - protocol: TCP
+      port: 3000          # service port
+      targetPort: 3000    # container port
+  type: ClusterIP
