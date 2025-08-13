@@ -47,7 +47,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: "${DOCKER_CREDS}", usernameVariable: 'USER', passwordVariable: 'PASS'),string(credentialsId: 'VITE_API_BASE_URL', variable: 'API_BASE')]) {
                         dir('frontend') {
                             sh '''
-                            echo "$PASS" | docker login -u "$USER" -p "$PASS"
+                            echo "$PASS" | docker login -u "$USER" --password-stdin
                             docker build --build-arg VITE_API_URL=$API_BASE -t $DOCKER_IMAGE_FRONTEND:$IMAGE_TAG .
                             docker push $DOCKER_IMAGE_FRONTEND:$IMAGE_TAG
                             '''
