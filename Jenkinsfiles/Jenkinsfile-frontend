@@ -7,7 +7,6 @@ pipeline {
         GIT_USER = 'ShivaNaniSimha'
         IMAGE_TAG = "${BUILD_NUMBER}"
         GIT_REPO = "Codexa-Your-Coding-Partner"
-        API_BASE = credentials('VITE_API_BASE_URL')
     }
 
     stages {
@@ -44,11 +43,20 @@ pipeline {
         stage('Build & Push Docker Image') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: "${DOCKER_CREDS}", usernameVariable: 'USER', passwordVariable: 'PASS'),string(credentialsId: 'VITE_API_BASE_URL', variable: 'API_BASE')]) {
+                    withCredentials([
+                        usernamePassword(credentialsId: "${DOCKER_CREDS}", usernameVariable: 'USER', passwordVariable: 'PASS'),
+                        string(credentialsId: 'VITE_API_BASE_URL', variable: 'API_BASE'),
+                        string(credentialsId: 'VITE_GOOGLE_CLIENT_ID', variable: 'GOOGLE_CLIENT_ID'),
+                        string(credentialsId: 'VITE_RAZORPAY_KEY', variable: 'RAZORPAY_KEY')
+                    ]) {
                         dir('frontend') {
                             sh '''
                             echo "$PASS" | docker login -u "$USER" --password-stdin
-                            docker build --build-arg VITE_API_URL=$API_BASE -t $DOCKER_IMAGE_FRONTEND:$IMAGE_TAG .
+                            docker build \
+                              --build-arg VITE_API_URL="$API_BASE" \
+                              --build-arg VITE_GOOGLE_CLIENT_ID="$GOOGLE_CLIENT_ID" \
+                              --build-arg VITE_RAZORPAY_KEY="$RAZORPAY_KEY" \
+                                -t $DOCKER_IMAGE_FRONTEND:$IMAGE_TAG .
                             docker push $DOCKER_IMAGE_FRONTEND:$IMAGE_TAG
                             docker logout
                             '''
