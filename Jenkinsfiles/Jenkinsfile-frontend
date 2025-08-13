@@ -50,6 +50,7 @@ pipeline {
                             echo "$PASS" | docker login -u "$USER" --password-stdin
                             docker build --build-arg VITE_API_URL=$API_BASE -t $DOCKER_IMAGE_FRONTEND:$IMAGE_TAG .
                             docker push $DOCKER_IMAGE_FRONTEND:$IMAGE_TAG
+                            docker logout
                             '''
                         }
                     }
