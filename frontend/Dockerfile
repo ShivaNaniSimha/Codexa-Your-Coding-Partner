@@ -1,36 +1,43 @@
-# Step 1: Build React/Vite app with Node.js 18
+# Step 1: Build Vite app
 FROM node:18 AS build
 
 WORKDIR /app
 
-# Copy package.json and package-lock.json first
+# Copy dependency files first
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy all source files
+# Copy source
 COPY . .
 
-# Pass API URL at build time
+# Build args
 ARG VITE_API_URL
-ENV VITE_API_URL=$VITE_API_URL
+ARG VITE_GOOGLE_CLIENT_ID
+ARG VITE_RAZORPAY_KEY
 
-# Build the app for production (Vite outputs to dist/)
-RUN npm run build
+# Pass all VITE_ variables to Vite build as env vars
+ENV VITE_API_URL=$VITE_API_URL
+ENV VITE_GOOGLE_CLIENT_ID=$VITE_GOOGLE_CLIENT_ID
+ENV VITE_RAZORPAY_KEY=$VITE_RAZORPAY_KEY
+
+# Build Vite app
+RUN VITE_API_URL=$VITE_API_URL \
+    VITE_GOOGLE_CLIENT_ID=$VITE_GOOGLE_CLIENT_ID \
+    VITE_RAZORPAY_KEY=$VITE_RAZORPAY_KEY \
+    npm run build
 
 # Step 2: Serve with NGINX
 FROM nginx:alpine
 
-# Remove default nginx static files
+# Clean default nginx content
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy built files from Vite's dist folder
+# Copy built static files
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
 
-# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
-
