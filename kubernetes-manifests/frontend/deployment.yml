@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: codexa-frontend  # 
+  namespace: two-tier
+  labels:
+    app: codexa-frontend  # 
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: codexa-frontend  # 
+  template:
+    metadata:
+      labels:
+        app: codexa-frontend  #
+    spec:
+      containers:
+        - name: frontend
+          image: shivasimha/letskonnect-client:5
+          ports:
+            - containerPort: 3000
