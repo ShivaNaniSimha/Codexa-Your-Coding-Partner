@@ -1,0 +1,139 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: codexa-backend
+  namespace: two-tier
+  labels:
+    app: codexa-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: codexa-backend
+  template:
+    metadata:
+      labels:
+        app: codexa-backend
+    spec:
+      containers:
+        - name: codexa-backend
+          image: shivasimha/codexa-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT_NO
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: PORT_NO
+            - name: DB_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: DB_STRING
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: JWT_SECRET
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: REDIS_PASSWORD
+            - name: REDIS_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: REDIS_STRING
+            - name: REDIS_PORT_NO
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: REDIS_PORT_NO
+            - name: JUDGE_0_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: JUDGE_0_API_KEY
+            - name: JUDGE_0_HOST_API
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: JUDGE_0_HOST_API
+            - name: GOOGLE_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: GOOGLE_CLIENT_ID
+            - name: GOOGLE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: GOOGLE_CLIENT_SECRET
+            - name: GEMINI_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: GEMINI_KEY
+            - name: GEMINI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: GEMINI_API_KEY
+            - name: CLOUDINARY_CLOUD_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: CLOUDINARY_CLOUD_NAME
+            - name: CLOUDINARY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: CLOUDINARY_API_KEY
+            - name: CLOUDINARY_API_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: CLOUDINARY_API_SECRET
+            - name: RAZORPAY_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: RAZORPAY_KEY
+            - name: RAZORPAY_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: RAZORPAY_SECRET
+            - name: EMAIL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: EMAIL_USER
+            - name: EMAIL_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secrets
+                  key: EMAIL_PASS
+          command: ["node"]
+          args: ["src/index.js"]
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 5
