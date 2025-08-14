@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: codexa-backend
-          image: shivasimha/codexa-backend:latest
+          image: shivasimha/codexa-backend:17
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
