@@ -121,22 +121,23 @@ spec:
           args: ["src/index.js"]
           readinessProbe:
             httpGet:
-              path: /
+              path: /ready
               port: 3000
             initialDelaySeconds: 30
             periodSeconds: 5
           livenessProbe:
             httpGet:
-              path: /
+              path: /healthz
               port: 3000
             initialDelaySeconds: 20
             periodSeconds: 10
           startupProbe:
             httpGet:
-              path: /health
+              path: /started
               port: 3000
             initialDelaySeconds: 10
             periodSeconds: 5
+
 
 
 
