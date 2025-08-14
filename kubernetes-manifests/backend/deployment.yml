@@ -18,7 +18,7 @@ spec:
       containers:
         - name: codexa-backend
           image: shivasimha/codexa-backend:17
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
           env:
@@ -137,3 +137,4 @@ spec:
               port: 3000
             initialDelaySeconds: 10
             periodSeconds: 5
+
