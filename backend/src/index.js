@@ -28,7 +28,7 @@ const PORT_NO = process.env.PORT_NO;
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://codexa.live',
+  'https://letskonnecthere.com',
   'https://www.codexa.live'
 ];
 

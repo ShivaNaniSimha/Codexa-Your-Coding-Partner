@@ -7,7 +7,7 @@ export const initializeSocket = (token) => {
     socket.disconnect();
   }
 
-  socket = io("https://codexa.live", {
+  socket = io("https://letskonnecthere.com", {
     auth: { token },
     withCredentials: true,
     transports: ['websocket', 'polling'],
