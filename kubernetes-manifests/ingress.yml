@@ -12,11 +12,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - codexa.live
-        - www.codexa.live
+        - letskonnecthere.com
+        - www.letskonnecthere.com
       secretName: codexa-tls
   rules:
-    - host: codexa.live
+    - host: letskonnecthere.com
       http:
         paths:
           - path: /
@@ -26,7 +26,7 @@ spec:
                 name: codexa-frontend
                 port:
                   number: 80
-    - host: www.codexa.live
+    - host: www.letskonnecthere.com
       http:
         paths:
           - path: /
